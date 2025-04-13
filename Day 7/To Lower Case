@@ -1,0 +1,18 @@
+class Solution {
+    public String toLowerCase(String s) {
+        StringBuilder str=new StringBuilder(s);
+        for(int i=0;i<s.length();i++){
+            char ch=s.charAt(i);
+            int ascii=(int) ch;
+            if(ascii>= 65 && ascii<=90){
+                ascii=ascii+32;
+                char dh=(char) ascii;
+                str.setCharAt(i,dh);
+            }
+            else{
+                str.setCharAt(i,ch);
+            }
+        }
+        return str.toString();
+    }
+}
