@@ -1,0 +1,41 @@
+class Solution {
+    // revrse the second middle portion 
+    public static ListNode reverseLL(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode prev = null;
+        ListNode curr = head;
+        while (curr != null) {
+            ListNode forw = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = forw;
+        }
+        return prev;
+    }
+
+    public boolean isPalindrome(ListNode head) {
+        // find first middle 
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        ListNode secondHead = reverseLL(slow.next);
+
+        // compare head.data and second.data 
+
+        ListNode first = head;
+        ListNode second = secondHead;
+        while (second != null) {
+            if (first.val != second.val) {
+                return false;
+            }
+            first = first.next;
+            second = second.next;
+        }
+        return true;
+    }
+}
